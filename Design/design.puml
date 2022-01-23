@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+class Board{
+        -Piece[][] board
+        +Piece[][] getBoard()
+        +Void putPiece()
+        +Void movePiece()
+    }
+
+class Piece{
+    -Int[] position
+    -char letter
+    -char side
+    +Int[] getPosition()
+    +Int setPosition()
+    +char getLetter()
+    +char getSide()
+    }
+
+Board *-[#000000]- Piece
+
+@enduml
