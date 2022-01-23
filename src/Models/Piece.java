@@ -20,8 +20,9 @@ public class Piece {
         return letter;
     }
 
-    public int[] setPosition() {
-        return position;
+    public void setPosition(final int px,final int py) {
+        this.position[0] = px;
+        this.position[1] = py;
     }
 
     @Override

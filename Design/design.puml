@@ -18,6 +18,48 @@ class Piece{
     +char getSide()
     }
 
-Board *-[#000000]- Piece
+class King{
+    +validMove()
+    }
+King -[#007700]-|> Piece
+
+class Queen{
+    +validMove()
+    }
+Queen -[#007700]-|> Piece
+
+class Rook{
+    +validMove()
+    }
+Rook -[#007700]-|> Piece
+
+class Bishop{
+    +validMove()
+    }
+Bishop -[#007700]-|> Piece
+
+class Pawn{
+    +validMove()
+    }
+Pawn -[#007700]-|> Piece
+
+class Knight{
+    +validMove()
+    }
+Knight -[#007700]-|> Piece
+
+class Empty{
+    }
+Empty -[#007700]-|> Piece
+
+Board *-[#000000]- Empty
+Board *-[#000000]- Knight
+Board *-[#000000]- Pawn
+Board *-[#000000]- Bishop
+Board *-[#000000]- Rook
+Board *-[#000000]- Queen
+Board *-[#000000]- King
+
+
 
 @enduml
