@@ -1,7 +1,5 @@
 package Models;
 
-import java.util.Arrays;
-
 public class Piece {
 
     private int[] position= new int[2];
@@ -20,17 +18,28 @@ public class Piece {
         return letter;
     }
 
-    public void setPosition(final int px,final int py) {
+    public char getSide() {
+        return side;
+    }
+
+    public void setPosition(final int px, final int py) {
         this.position[0] = px;
         this.position[1] = py;
     }
 
     @Override
     public String toString() {
-        return "Piece{" +
-                "position=" + Arrays.toString(position) +
-                ", letter=" + letter +
-                ", side=" + side +
-                '}';
+        return "[" +
+                "" + side +
+                "" + letter +
+                ']';
+    }
+
+    public boolean validMove(int[] inicialPos, int[] finalPos, Piece[][] board) {
+        return true;
+    }
+
+    public boolean moveObstructed(int[] inicialPos, int[] finalPos, Piece[][] board) {
+        return true;
     }
 }

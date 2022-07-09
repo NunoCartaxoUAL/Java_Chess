@@ -1,43 +1,65 @@
 package Views;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import Models.Board;
+import jdk.swing.interop.SwingInterOpUtils;
+
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
-public class GUI extends JPanel{
-
+public class GUI{
     private JFrame jf;
-
-    public void paint(Graphics gp) //paints stuff , i dont rly know how
-    {
-
-        gp.fillRect(50, 50, 600, 600); //makes a big black square
-
-        for(int x=50; x<=600; x+=150) { //makes all the odd rows in chess board
-            for(int y=50; y<=600; y+=150) {
-                gp.clearRect(x, y, 75, 75); //clear rectangle
-            }
-        }
-
-        for(int x=125; x<=600; x+=150) { //makes all the even rows in chess board
-            for(int y=125; y<=600; y+=150) {
-                gp.clearRect(x, y, 75, 75); //clear rectangle
-            }
-        }
-    }
-
+    private Board board;
+    private CardLayout lyt;
 
     public GUI() {
-        this.jf=new JFrame(); // adds a panel or a window in JAVA SWING
-        this.jf.setSize(700, 700);
-        this.jf.setTitle("Draw Chess Board");
-        this.jf.getContentPane().add(this); //adds GUI paint to the frame
-        this.jf.setLocationRelativeTo(null); //makes all positions be absolute , top left is [0;0]  bottom left is [width,height]
-        this.jf.setBackground(Color.BLACK);
-        this.jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //idk
-        this.jf.setVisible(true); // must not forget this on all elements or else the default is false (invisible)
+        this.board = new Board();
+        this.jf = new JFrame();
+        this.jf.setLayout(new GridLayout(1,1));
+        this.jf.setPreferredSize(new Dimension(440,440));
+        jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JPanel bP = new JPanel();
+        JPanel containerPanel = new JPanel();
+        bP.setLayout(new GridLayout(8,8));
+        addSpacesToButtonPanel(bP);
+        bP.setPreferredSize(new Dimension(400, 400));
+        containerPanel.add(bP);
+
+        jf.getContentPane().add(containerPanel);
+        jf.pack();
+        jf.setVisible(true);
+
     }
+    public void addSpacesToButtonPanel(JPanel bP){
+        var b = this.addSpace();
+        for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    bP.add(addSpace());
+                }
+
+        }
+    }
+    public JButton addSpace(){
+        JButton b = new JButton();
+        b.setBorderPainted(false);
+        b.setFocusPainted(false);
+        b.setBackground(Color.BLACK);
+        ActionListener aL = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(b.getX()+"_"+b.getY()+"_"+b.getWidth()+"_"+b.getHeight());
+            }
+        };
+        b.addActionListener(aL);
+        return b;
+    }
+
+    /*
+
+     */
+
 
     public void addPiece(){
         //TODO to implement + get the images of each chess piece and add to a new folder called resources
